@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/main_text_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/fab_margin"
+        android:textAppearance="@style/TextAppearance.Material3.DisplayLarge"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/main_text_value"
+        android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+        android:gravity="center"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="Press on the button below, when the value is a multiple of 5, you win the macth"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_increment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cornerRadius="@dimen/fab_margin"
+        android:layout_margin="@dimen/fab_margin"
+        android:padding="@dimen/fab_margin"
+        android:text="Incrementer"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
