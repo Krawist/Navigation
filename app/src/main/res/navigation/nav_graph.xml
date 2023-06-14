@@ -6,9 +6,9 @@
     app:startDestination="@id/mainFragment">
 
     <fragment android:id="@+id/mainFragment"
-        android:name="com.example.listandviewmodel.main.MainFragment"/>
+        android:name="com.example.listandviewmodel.ui.main.MainFragment"/>
 
     <fragment android:id="@+id/secondFragment"
-        android:name="com.example.listandviewmodel.SecondFragment"/>
+        android:name="com.example.listandviewmodel.ui.form.SecondFragment"/>
 
 </navigation>

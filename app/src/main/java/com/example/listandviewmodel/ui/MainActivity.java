@@ -1,4 +1,4 @@
-package com.example.listandviewmodel;
+package com.example.listandviewmodel.ui;
 
 import android.os.Bundle;
 

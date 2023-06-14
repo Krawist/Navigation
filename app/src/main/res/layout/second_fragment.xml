@@ -2,15 +2,74 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
+        android:id="@+id/page_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Bienvenue"
-        android:textAppearance="@style/TextAppearance.Material3.DisplayLarge"
+        android:layout_height="wrap_content"
+        android:text="Formulaire"
         android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/fab_margin"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_student_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/page_title"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        app:boxCornerRadiusBottomEnd="@dimen/fab_margin"
+        app:boxCornerRadiusBottomStart="@dimen/fab_margin"
+        app:boxCornerRadiusTopEnd="@dimen/fab_margin"
+        app:boxCornerRadiusTopStart="@dimen/fab_margin"
+        android:hint="Student Name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName|textCapWords"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_student_email_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/input_layout_student_name"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        app:boxCornerRadiusBottomEnd="@dimen/fab_margin"
+        app:boxCornerRadiusBottomStart="@dimen/fab_margin"
+        app:boxCornerRadiusTopEnd="@dimen/fab_margin"
+        app:boxCornerRadiusTopStart="@dimen/fab_margin"
+        android:hint="Student Email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_email_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_save_student"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/input_layout_student_email_address"
+        android:layout_margin="@dimen/fab_margin"
+        android:padding="@dimen/fab_margin"
+        app:cornerRadius="@dimen/fab_margin"
+        android:text="Enregistrer"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

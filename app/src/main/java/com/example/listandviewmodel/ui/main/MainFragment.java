@@ -1,4 +1,4 @@
-package com.example.listandviewmodel.main;
+package com.example.listandviewmodel.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,25 +8,32 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.listandviewmodel.R;
+import com.example.listandviewmodel.adapter.StudentAdapter;
 import com.example.listandviewmodel.databinding.MainFragmentBinding;
+import com.example.listandviewmodel.ui.MainViewModel;
 
 public class MainFragment extends Fragment {
 
     private MainFragmentBinding dataBinding;
     private NavController navController;
 
-    private MainFragmentViewModel viewModel;
+    private MainViewModel viewModel;
+    private StudentAdapter studentAdapter = new StudentAdapter();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(MainFragmentViewModel.class);
+
+       ViewModel viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+        navController = NavHostFragment.findNavController(MainFragment.this);
     }
 
     @Nullable
@@ -41,33 +48,23 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        navController = NavHostFragment.findNavController(MainFragment.this);
-        observeViews();
+        setupList();
         observeData();
+        observeView();
+    }
+
+    private void observeView() {
+        dataBinding.buttonAdd.setOnClickListener(v -> navController.navigate(R.id.secondFragment));
     }
 
     private void observeData() {
-
+        viewModel.students.observe(getViewLifecycleOwner(), students -> {
+            studentAdapter.submitList(students);
+        });
     }
 
-    private void observeViews() {
-        dataBinding.buttonIncrement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                viewModel.counterLiveData.observe(getViewLifecycleOwner(), new Observer<Integer>() {
-                    @Override
-                    public void onChanged(Integer integer) {
-                        dataBinding.mainTextValue.setText(String.valueOf(integer));
-                        if(integer % 5 == 0){
-                            viewModel.increment();
-                            navController.navigate(R.id.secondFragment);
-                        }
-                    }
-                });
-
-                viewModel.increment();
-            }
-        });
+    private void setupList() {
+        dataBinding.listview.setLayoutManager(new LinearLayoutManager(requireContext()));
+        dataBinding.listview.setAdapter(studentAdapter);
     }
 }
