@@ -21,7 +21,7 @@ import com.example.listandviewmodel.ui.MainViewModel;
 
 import java.util.UUID;
 
-public class SecondFragment extends Fragment {
+public class FormFragment extends Fragment {
 
     private SecondFragmentBinding dataBinding;
     private MainViewModel viewModel;
@@ -29,8 +29,7 @@ public class SecondFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        int o =0;
+        viewModel = new ViewModelProvider(this, ViewModelProvider.Factory.from(MainViewModel.getInitialiser(requireActivity().getApplication()))).get(MainViewModel.class);
     }
 
     @Nullable

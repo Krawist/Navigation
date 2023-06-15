@@ -12,7 +12,7 @@ import com.example.listandviewmodel.models.Student;
 
 public class StudentAdapter extends ListAdapter<Student, StudentAdapter.StudentViewHolder> {
 
-    public StudentAdapter(){
+    public StudentAdapter() {
         super(new DiffUtil.ItemCallback<Student>() {
             @Override
             public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
@@ -42,18 +42,15 @@ public class StudentAdapter extends ListAdapter<Student, StudentAdapter.StudentV
 
         private com.example.listandviewmodel.databinding.ItemStudentBinding itemStudentBinding;
 
-        public StudentViewHolder(com.example.listandviewmodel.databinding.ItemStudentBinding itemStudentBinding){
+        public StudentViewHolder(com.example.listandviewmodel.databinding.ItemStudentBinding itemStudentBinding) {
             super(itemStudentBinding.getRoot());
             this.itemStudentBinding = itemStudentBinding;
         }
 
-        public void bindData(Student student){
-            if(student != null){
-                itemStudentBinding.studentImage.setImageResource(student.getStudentImage());
-                itemStudentBinding.studentEmailAddress.setText(student.getStudentEmailAddress());
-                itemStudentBinding.studentName.setText(student.getStudentName());
+        public void bindData(Student student) {
+            if (student != null) {
+                itemStudentBinding.setStudent(student);
             }
         }
-
     }
 }

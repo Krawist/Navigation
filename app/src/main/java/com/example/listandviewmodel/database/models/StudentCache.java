@@ -1,23 +1,36 @@
-package com.example.listandviewmodel.models;
+package com.example.listandviewmodel.database.models;
 
-import com.example.listandviewmodel.database.models.StudentCache;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-public class Student {
-    private String studentName;
-    private String studentEmailAddress;
-    private int studentImage;
+import com.example.listandviewmodel.models.Student;
 
+@Entity(tableName = "students")
+public class StudentCache {
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "student_matricule")
     private String studentMatricule;
 
-    public Student(String studentName, String studentEmailAddress, int studentImage, String studentMatricule) {
+    @ColumnInfo(name = "student_name")
+    private String studentName;
+
+    @ColumnInfo(name = "student_email_address")
+    private String studentEmailAddress;
+    @ColumnInfo(name = "student_image")
+    private int studentImage;
+
+    public StudentCache(String studentMatricule, String studentName, String studentEmailAddress, int studentImage) {
+        this.studentMatricule = studentMatricule;
         this.studentName = studentName;
         this.studentEmailAddress = studentEmailAddress;
         this.studentImage = studentImage;
-        this.studentMatricule = studentMatricule;
     }
 
-    public StudentCache toCacheModel(){
-        return new StudentCache(studentMatricule, studentName, studentEmailAddress, studentImage);
+    public Student toDomainModel(){
+        return new Student(studentName, studentEmailAddress, studentImage, studentMatricule);
     }
 
     public String getStudentMatricule() {
@@ -51,4 +64,6 @@ public class Student {
     public void setStudentImage(int studentImage) {
         this.studentImage = studentImage;
     }
+
+
 }

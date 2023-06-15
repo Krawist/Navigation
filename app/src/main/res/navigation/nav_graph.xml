@@ -9,6 +9,6 @@
         android:name="com.example.listandviewmodel.ui.main.MainFragment"/>
 
     <fragment android:id="@+id/secondFragment"
-        android:name="com.example.listandviewmodel.ui.form.SecondFragment"/>
+        android:name="com.example.listandviewmodel.ui.form.FormFragment"/>
 
 </navigation>
