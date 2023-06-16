@@ -11,6 +11,7 @@ public interface StudentRepository {
 
     void saveStudent(Student student);
 
-    LiveData<List<StudentCache>> getLiveDataAllStudent();
+    LiveData<List<Student>> getLiveDataAllStudent();
 
+    void deleteStudent(Student student);
 }

@@ -3,7 +3,7 @@
 
     <data>
         <variable
-            name="student"
+                name="student"
             type="com.example.listandviewmodel.models.Student" />
     </data>
 

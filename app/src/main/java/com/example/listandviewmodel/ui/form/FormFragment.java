@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.util.PatternsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -81,12 +82,12 @@ public class FormFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(TextUtils.isEmpty(s.toString())){
-                    dataBinding.inputLayoutStudentName.setErrorEnabled(true);
-                    dataBinding.inputLayoutStudentName.setError("Veuillez remplir l'adresse mail de l'étudiant");
+                if(PatternsCompat.EMAIL_ADDRESS.matcher(s.toString()).matches()){
+                    dataBinding.inputLayoutStudentEmailAddress.setErrorEnabled(true);
+                    dataBinding.inputLayoutStudentEmailAddress.setError("Veuillez remplir l'adresse mail de l'étudiant");
                 }else{
-                    dataBinding.inputLayoutStudentName.setErrorEnabled(false);
-                    dataBinding.inputLayoutStudentName.setError(null);
+                    dataBinding.inputLayoutStudentEmailAddress.setErrorEnabled(false);
+                    dataBinding.inputLayoutStudentEmailAddress.setError(null);
                 }
             }
         });

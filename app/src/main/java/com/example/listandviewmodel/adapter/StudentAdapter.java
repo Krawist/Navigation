@@ -1,6 +1,7 @@
 package com.example.listandviewmodel.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,11 +9,14 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.listandviewmodel.listener.ToDoOnActions;
 import com.example.listandviewmodel.models.Student;
 
 public class StudentAdapter extends ListAdapter<Student, StudentAdapter.StudentViewHolder> {
 
-    public StudentAdapter() {
+    private ToDoOnActions toDoOnActions;
+
+    public StudentAdapter(ToDoOnActions toDoOnActions) {
         super(new DiffUtil.ItemCallback<Student>() {
             @Override
             public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
@@ -21,9 +25,13 @@ public class StudentAdapter extends ListAdapter<Student, StudentAdapter.StudentV
 
             @Override
             public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
-                return oldItem.equals(newItem);
+                if(oldItem.getStudentImage() != newItem.getStudentImage()) return false;
+                if(oldItem.getStudentName().equals(newItem.getStudentName())) return false;
+                if(oldItem.getStudentEmailAddress().equals(newItem.getStudentEmailAddress())) return false;
+                return true;
             }
         });
+        this.toDoOnActions = toDoOnActions;
     }
 
     @NonNull
@@ -50,6 +58,12 @@ public class StudentAdapter extends ListAdapter<Student, StudentAdapter.StudentV
         public void bindData(Student student) {
             if (student != null) {
                 itemStudentBinding.setStudent(student);
+                itemStudentBinding.getRoot().setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        return toDoOnActions.onLongClick(student);
+                    }
+                });
             }
         }
     }

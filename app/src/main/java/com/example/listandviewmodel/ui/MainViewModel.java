@@ -29,17 +29,21 @@ public class MainViewModel extends ViewModel {
 
     public MainViewModel(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-        students = Transformations.map(studentRepository.getLiveDataAllStudent(), studentsCache -> studentsCache.stream().map(studentCache -> studentCache.toDomainModel()).collect(Collectors.toList()));
+        students = studentRepository.getLiveDataAllStudent();
     }
 
     public void createStudent(Student student) {
         studentRepository.saveStudent(student);
     }
 
-    public static ViewModelInitializer<MainViewModel> getInitialiser(Application applicationContext) {
+    public static ViewModelInitializer<MainViewModel> getInitialiser(Application application) {
         return new ViewModelInitializer<>(MainViewModel.class, creationExtras -> {
-            StudentDao studentDao = CtiDatabase.getInstance(applicationContext).getStudentDao();
+            StudentDao studentDao = CtiDatabase.getInstance(application).getStudentDao();
             return new MainViewModel(new StudentRepositoryImpl(studentDao));
         });
+    }
+
+    public void deleteStudent(Student student) {
+        studentRepository.deleteStudent(student);
     }
 }

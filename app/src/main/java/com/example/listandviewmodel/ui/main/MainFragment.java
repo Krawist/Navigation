@@ -1,6 +1,7 @@
 package com.example.listandviewmodel.ui.main;
 
 import android.app.Application;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +19,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.listandviewmodel.R;
 import com.example.listandviewmodel.adapter.StudentAdapter;
+import com.example.listandviewmodel.databinding.ItemStudentBinding;
 import com.example.listandviewmodel.databinding.MainFragmentBinding;
+import com.example.listandviewmodel.listener.ToDoOnActions;
+import com.example.listandviewmodel.models.Student;
 import com.example.listandviewmodel.ui.MainViewModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.dialog.MaterialDialogs;
 
 public class MainFragment extends Fragment {
 
@@ -27,7 +33,26 @@ public class MainFragment extends Fragment {
     private NavController navController;
 
     private MainViewModel viewModel;
-    private StudentAdapter studentAdapter = new StudentAdapter();
+    private StudentAdapter studentAdapter = new StudentAdapter(new ToDoOnActions(){
+        @Override
+        public void onClick(Object item) {
+            super.onClick(item);
+        }
+
+        @Override
+        public boolean onLongClick(Object item) {
+            new MaterialAlertDialogBuilder(requireContext())
+                    .setMessage("Vous êtes sur le point de supprimer cet étudiant. Cliquez sur Supprimer pour valider la supression")
+                    .setPositiveButton("Supprimer", (dialog, which) -> {
+                        viewModel.deleteStudent((Student)item);
+                    })
+                    .setNegativeButton("Annuler",(dialog, which) ->{
+
+                    }).show();
+
+            return true;
+        }
+    });
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

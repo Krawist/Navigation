@@ -1,5 +1,6 @@
 package com.example.listandviewmodel.database;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.room.Database;
@@ -17,12 +18,13 @@ public abstract class CtiDatabase extends RoomDatabase {
     public abstract StudentDao getStudentDao();
 
     private static volatile CtiDatabase database;
+
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-    public static CtiDatabase getInstance(Context context){
+    public static CtiDatabase getInstance(Application application){
         if(database == null){
-            database = Room.databaseBuilder(context,
+            database = Room.databaseBuilder(application,
                     CtiDatabase.class, "cti-database").build();
         }
 
