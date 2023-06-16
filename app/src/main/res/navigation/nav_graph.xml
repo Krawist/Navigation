@@ -3,12 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/homeFragment">
 
-    <fragment android:id="@+id/mainFragment"
-        android:name="com.example.listandviewmodel.ui.main.MainFragment"/>
+    <fragment android:id="@+id/studentListFragment"
+        android:name="com.example.listandviewmodel.ui.student.list.StudentListFragment"/>
 
-    <fragment android:id="@+id/secondFragment"
-        android:name="com.example.listandviewmodel.ui.form.FormFragment"/>
+    <fragment android:id="@+id/studentFormFragment"
+        android:name="com.example.listandviewmodel.ui.student.form.FormFragment"/>
+
+    <fragment android:id="@+id/homeFragment"
+        android:name="com.example.listandviewmodel.ui.HomeFragment"/>
+
+    <fragment android:id="@+id/albumListFragment"
+        android:name="com.example.listandviewmodel.ui.image.albums.ListAlbumFragment"/>
+
+    <fragment android:id="@+id/imageListFragment"
+        android:name="com.example.listandviewmodel.ui.image.photos.ListImageFragment"/>
 
 </navigation>

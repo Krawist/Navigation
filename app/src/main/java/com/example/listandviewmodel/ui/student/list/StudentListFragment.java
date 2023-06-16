@@ -1,7 +1,5 @@
-package com.example.listandviewmodel.ui.main;
+package com.example.listandviewmodel.ui.student.list;
 
-import android.app.Application;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,24 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.viewmodel.ViewModelInitializer;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.listandviewmodel.R;
 import com.example.listandviewmodel.adapter.StudentAdapter;
-import com.example.listandviewmodel.databinding.ItemStudentBinding;
 import com.example.listandviewmodel.databinding.MainFragmentBinding;
 import com.example.listandviewmodel.listener.ToDoOnActions;
 import com.example.listandviewmodel.models.Student;
 import com.example.listandviewmodel.ui.MainViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.dialog.MaterialDialogs;
 
-public class MainFragment extends Fragment {
+public class StudentListFragment extends Fragment {
 
     private MainFragmentBinding dataBinding;
     private NavController navController;
@@ -60,7 +54,7 @@ public class MainFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this, ViewModelProvider.Factory.from(MainViewModel.getInitialiser(requireActivity().getApplication()))).get(MainViewModel.class);
 
-        navController = NavHostFragment.findNavController(MainFragment.this);
+        navController = NavHostFragment.findNavController(StudentListFragment.this);
     }
 
     @Nullable
@@ -81,7 +75,7 @@ public class MainFragment extends Fragment {
     }
 
     private void observeView() {
-        dataBinding.buttonAdd.setOnClickListener(v -> navController.navigate(R.id.secondFragment));
+        dataBinding.buttonAdd.setOnClickListener(v -> navController.navigate(R.id.studentFormFragment));
     }
 
     private void observeData() {

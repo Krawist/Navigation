@@ -1,4 +1,4 @@
-package com.example.listandviewmodel.ui.form;
+package com.example.listandviewmodel.ui.student.form;
 
 import android.os.Bundle;
 import android.text.Editable;
